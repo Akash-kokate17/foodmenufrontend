@@ -31,8 +31,8 @@ export default function PlaceOrder(props) {
               icon: "success",
             });
             await sendMail(tableNo, email);
-            setEmail(email);
             navigate("/vegNonVegMenu");
+            setEmail(email);
           } catch (error) {
             Swal.fire({
               title: "Error",
