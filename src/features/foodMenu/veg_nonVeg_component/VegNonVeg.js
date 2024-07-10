@@ -3,7 +3,7 @@ import { TiArrowRightOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import OwnerLogin from "../ownerLogin/OwnerLogin";
 
-export default function Veg_NonVeg(props) {
+export default function VegNonVeg(props) {
   return (
     <>
     <OwnerLogin/>

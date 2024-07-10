@@ -4,14 +4,13 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 export default function PlaceOrder(props) {
-  const userEmail = sessionStorage.getItem("email")
-  const [email,setEmail] = useState(userEmail)
+  const userEmail = sessionStorage.getItem("email");
+  const [email, setEmail] = useState(userEmail);
   const tableNo = sessionStorage.getItem("tableNumber");
   console.log(tableNo);
-  console.log(userEmail,"userEmail");
+  console.log(userEmail, "userEmail");
 
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const SendMailOfOrder = async () => {
     if (tableNo) {
@@ -31,7 +30,8 @@ export default function PlaceOrder(props) {
               text: "Your Order List You Got On Gmail",
               icon: "success",
             });
-            await sendMail(tableNo,email);
+            await sendMail(tableNo, email);
+            setEmail(email);
             navigate("/vegNonVegMenu");
           } catch (error) {
             Swal.fire({

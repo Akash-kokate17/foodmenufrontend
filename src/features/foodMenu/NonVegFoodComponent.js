@@ -12,7 +12,7 @@ import OrdersButton from "./veg_nonVeg_component/OrdersButton";
 
 const NonVegFoodComponent = () => {
   const dispatch = useDispatch();
-  const nonVegFood = useSelector((state) => state.vegFood.nonVegItems) || [];
+  const nonVegFood = useSelector((state) => state.vegFood.nonVegItems);
   const menu = useSelector((state) => state.vegFood.menuOder) || { items: [] };
   const [selectedItems, setSelectedItems] = useState([]);
   const [tableNumber, setTableNumber] = useState("");
