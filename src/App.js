@@ -1,57 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import VegFoodComponent from "./features/foodMenu/VegFoodComponent";
+import OrderList from "./features/foodMenu/OrderList";
+import NonVegFoodComponent from "./features/foodMenu/NonVegFoodComponent";
+import Veg_NonVeg from "./features/foodMenu/veg_nonVeg_component/Veg_NonVeg";
+import OwnerPasswordCheck from "./features/foodMenu/ownerLogin/OwnerPasswordCheck";
+import AllPlaceOrder from "./features/foodMenu/allPlaceOrder/AllPlaceOrder";
+import UserEmail from "./features/foodMenu/userEmail/UserEmail";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route exact path="/" element={<UserEmail/>}/>
+        <Route exact path="/vegNonVegMenu" element={<Veg_NonVeg />} />
+        <Route exact path="/vegMenu" element={<VegFoodComponent />} />
+        <Route exact path="/nonVegMenu" element={<NonVegFoodComponent />} />
+        <Route exact path="/orderList" element={<OrderList />} />
+        <Route exact path="/ownerLogin" element={<OwnerPasswordCheck />} />
+        <Route exact path="/allOrder" element={<AllPlaceOrder/>}/>
+      </Routes>
+    </>
   );
 }
 
