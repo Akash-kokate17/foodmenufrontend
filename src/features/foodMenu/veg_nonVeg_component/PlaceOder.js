@@ -30,8 +30,8 @@ export default function PlaceOrder(props) {
               text: "Your Order List You Got On Gmail",
               icon: "success",
             });
-            sendMail(tableNo, email);
-            navigate("/vegNonVegMenu");
+             sendMail(tableNo, email);
+             navigate("/vegNonVegMenu");
             setEmail(email);
           } catch (error) {
             Swal.fire({
