@@ -6,8 +6,11 @@ import OwnerLogin from "../ownerLogin/OwnerLogin";
 export default function VegNonVeg(props) {
   return (
     <>
-    <OwnerLogin/>
-      <div className="container d-flex justify-content-center align-items-center vh-100 w-100" style={{ cursor: "pointer" }}>
+      <OwnerLogin />
+      <div
+        className="container d-flex justify-content-center align-items-center w-100"
+        style={{ cursor: "pointer" }}
+      >
         <div className="row w-100">
           <div className="col-12 col-md-6 mb-4">
             <Link to="/vegMenu" className="text-decoration-none">
@@ -20,7 +23,9 @@ export default function VegNonVeg(props) {
                   />
                   <p className="border border-bottom-2 mt-5 border-black"></p>
                   <p className="text-dark">CLICK HERE FOR VEG MENU</p>
-                  <p><TiArrowRightOutline className="fs-5 text-dark" /></p>
+                  <p>
+                    <TiArrowRightOutline className="fs-5 text-dark" />
+                  </p>
                 </div>
               </div>
             </Link>
@@ -36,7 +41,32 @@ export default function VegNonVeg(props) {
                   />
                   <p className="border border-bottom-2 mt-2 border-black"></p>
                   <p className="text-dark">CLICK HERE FOR NONVEG MENU</p>
-                  <p><TiArrowRightOutline className="fs-5 text-dark" /></p>
+                  <p>
+                    <TiArrowRightOutline className="fs-5 text-dark" />
+                  </p>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </div>
+      {/* tanduri roti and bevarage section */}
+      <div className="d-flex flex-wrap justify-content-center align-items-center w-100">
+        <div className="d-flex flex-row justify-content-center align-items-center w-100">
+          <div className="col-12 col-md-6 mb-4">
+            <Link to="/nonVegMenu" className="text-decoration-none">
+              <div className="border border-2 p-2 rounded rounded-5 h-100 d-flex flex-column justify-content-between w-100">
+                <div className="text-center">
+                  <img
+                    src="https://th.bing.com/th/id/OIP.af1nrpfH7CfM-fOr9Zq3KgHaHS?rs=1&pid=ImgDetMain"
+                    alt="nonVegThaliPhoto"
+                    className="img-fluid rounded rounded-5"
+                  />
+                  <p className="border border-bottom-2 mt-2 border-black"></p>
+                  <p className="text-dark">Roti & Bevarage Section</p>
+                  <p>
+                    <TiArrowRightOutline className="fs-5 text-dark" />
+                  </p>
                 </div>
               </div>
             </Link>
