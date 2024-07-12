@@ -54,7 +54,7 @@ export default function VegNonVeg(props) {
       <div className="d-flex flex-wrap justify-content-center align-items-center w-100">
         <div className="d-flex flex-row justify-content-center align-items-center w-100">
           <div className="col-12 col-md-6 mb-4">
-            <Link to="/nonVegMenu" className="text-decoration-none">
+            <Link to="/rotiBevarage" className="text-decoration-none">
               <div className="border border-2 p-2 rounded rounded-5 h-100 d-flex flex-column justify-content-between w-100">
                 <div className="text-center">
                   <img

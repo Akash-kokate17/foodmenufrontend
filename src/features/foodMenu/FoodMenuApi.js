@@ -12,7 +12,9 @@ export async function vegFood() {
 
 export async function nonVegFood() {
   try {
-    let response = await axios.get("https://foodmenubackend.onrender.com/nonVeg");
+    let response = await axios.get(
+      "https://foodmenubackend.onrender.com/nonVeg"
+    );
     return response.data;
   } catch (err) {
     console.log("something went wrong to fetch nonVegFood", err);
@@ -54,7 +56,10 @@ export async function deleteAllData(tableNo) {
 }
 export async function register(userData) {
   try {
-    await axios.post("https://foodmenubackend.onrender.com/api/register", userData);
+    await axios.post(
+      "https://foodmenubackend.onrender.com/api/register",
+      userData
+    );
   } catch (err) {
     console.log("something went wrong to post register", err);
   }
@@ -74,11 +79,14 @@ export async function login(userData) {
 
 export async function orders(token) {
   try {
-    let response = await axios.get("https://foodmenubackend.onrender.com/api/orders", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    let response = await axios.get(
+      "https://foodmenubackend.onrender.com/api/orders",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return response.data;
   } catch (err) {
     console.log("something went wrong to getting orders data", err);
@@ -91,9 +99,9 @@ export async function menuOrder(tableNo) {
     let response = await axios.get(
       `https://foodmenubackend.onrender.com/orderList/${tableNo}`
     );
-     if(response){
-      return response.data 
-     }
+    if (response) {
+      return response.data;
+    }
   } catch (err) {
     console.log("something went wrong to fetch Menu Order");
     throw err;
@@ -101,24 +109,39 @@ export async function menuOrder(tableNo) {
 }
 
 // sendMail for sending the oder to the owner kitchen.
-export async function sendMail(tableNumber,userEmail){
-  try{
-    let response = await axios.get(`https://foodmenubackend.onrender.com/sendMail/${tableNumber}/${userEmail}`)
-     return response.data;
-  }catch(err){
-    console.log("something went wrong to sendMail")
+export async function sendMail(tableNumber, userEmail) {
+  try {
+    let response = await axios.get(
+      `https://foodmenubackend.onrender.com/sendMail/${tableNumber}/${userEmail}`
+    );
+    return response.data;
+  } catch (err) {
+    console.log("something went wrong to sendMail");
   }
 }
 
 // allOderData is for fetching all the oder data in oders collection.
 
-export async function allOderData(){
-  try{
-    let response = await axios.get("https://foodmenubackend.onrender.com/getAllOderData")
-    return response.data
-  }catch(err){
-    console.log("something went wrong to fetch allOderData",err)
+export async function allOderData() {
+  try {
+    let response = await axios.get(
+      "https://foodmenubackend.onrender.com/getAllOderData"
+    );
+    return response.data;
+  } catch (err) {
+    console.log("something went wrong to fetch allOderData", err);
   }
 }
 
+// post roti and water bottle
 
+export async function postRotiBottleData(tableNo, roti, waterBottle) {
+  try {
+    let response =await axios.post(
+      `https://foodmenubackend.onrender.com/api/postRotiOrder/${tableNo}/${roti}/${waterBottle}`
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error, "roti and water bottle data is not posted");
+  }
+};

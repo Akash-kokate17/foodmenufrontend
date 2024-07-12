@@ -8,6 +8,7 @@ import VegNonVeg from "./features/foodMenu/veg_nonVeg_component/VegNonVeg";
 import OwnerPasswordCheck from "./features/foodMenu/ownerLogin/OwnerPasswordCheck";
 import AllPlaceOrder from "./features/foodMenu/allPlaceOrder/AllPlaceOrder";
 import UserEmail from "./features/foodMenu/userEmail/UserEmail";
+import RotiBevaragePage from "./features/foodMenu/rotiBevarage/RotiBevaragePage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/orderList" element={<OrderList />} />
         <Route exact path="/ownerLogin" element={<OwnerPasswordCheck />} />
         <Route exact path="/allOrder" element={<AllPlaceOrder/>}/>
+        <Route exact path="/rotiBevarage" element={<RotiBevaragePage/>}/>
       </Routes>
     </>
   );
