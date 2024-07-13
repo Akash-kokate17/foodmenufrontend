@@ -1,11 +1,9 @@
 import React, { useRef } from "react";
 import { postRotiBottleData } from "../FoodMenuApi";
 import Swal from "sweetalert2";
+import OrdersButton from "../veg_nonVeg_component/OrdersButton";
 
 export default function RotiBevaragePage(props) {
-  // const [roti, setRoti] = useState(0);
-  // const [bottle, setBottle] = useState(0);
-
   const rotiCout = useRef();
   const waterBottle = useRef();
   let tableNo = sessionStorage.getItem("tableNumber");
@@ -13,13 +11,10 @@ export default function RotiBevaragePage(props) {
 
   async function postRotiAndBottle() {
     try {
-      const rotiCount = parseInt(rotiCout.current.value, 10);
-      const bottleCount = parseInt(waterBottle.current.value, 10);
+      const rotiCount = rotiCout.current.value;
+      const bottleCount = waterBottle.current.value;
 
-      if (rotiCount >= 1 && bottleCount >= 1) {
-        // setRoti(rotiCount);
-        // setBottle(bottleCount);
-
+      if (rotiCount >= 1 || bottleCount >= 1) {
         await postRotiBottleData(parseInt(tableNo), rotiCount, bottleCount);
         Swal.fire("Data has been successfully sent");
       } else {
@@ -33,11 +28,15 @@ export default function RotiBevaragePage(props) {
 
   return (
     <>
+      <OrdersButton />
+      <div className="text-start">
+        <div>Your Table No :{tableNo}</div>
+      </div>
       <table className="table text-center">
         <thead>
           <tr>
-            <th>roti</th>
-            <th>water bottle</th>
+            <th>roti & Water Bottle</th>
+            <th>Plz Enter Count</th>
           </tr>
         </thead>
         <tbody>
@@ -45,7 +44,7 @@ export default function RotiBevaragePage(props) {
             <td>Select Roti</td>
             <td>
               <input
-                type="text"
+                type="number"
                 ref={rotiCout}
                 className="rounded rounded-2 text-center"
               />
@@ -55,7 +54,7 @@ export default function RotiBevaragePage(props) {
             <td>Select Water Bottle</td>
             <td>
               <input
-                type="text"
+                type="number"
                 ref={waterBottle}
                 className="rounded rounded-2 text-center"
               />

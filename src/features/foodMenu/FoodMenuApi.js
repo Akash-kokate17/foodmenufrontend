@@ -137,8 +137,8 @@ export async function allOderData() {
 
 export async function postRotiBottleData(tableNo, roti, waterBottle) {
   try {
-    let response =await axios.post(
-      `https://foodmenubackend.onrender.com/api/postRotiOrder/${tableNo}/${roti}/${waterBottle}`
+    let response = await axios.post(
+      `https://foodmenubackend.onrender.com/rotiBevarage/postRotiOrder/${tableNo}/${roti}/${waterBottle}`
     );
     return response.data;
   } catch (error) {
