@@ -33,10 +33,28 @@ const OrderList = () => {
   useEffect(() => {
     getRotiBottle();
   }, []);
-   console.log("roti bottle",rotiBottle)
-  // const totalRotiOrdered = rotiBottle
-  // .filter((data) => data.tableNo === tableNumber)
-  // .reduce((acc, obj) => acc + (obj.roti.rotiCount || 0), 0);
+
+  const totalRotiOrdered = rotiBottle
+  .filter((data) => parseInt(data.tableNo, 10) === parseInt(tableNumber, 10))
+  .reduce(
+    (acc, obj) =>
+      acc +
+      obj.roti.reduce((sum, rotiObj) => sum + (rotiObj.rotiCount || 0), 0),
+    0
+  );
+
+const totalBottleOrdered = rotiBottle
+  .filter((data) => parseInt(data.tableNo, 10) === parseInt(tableNumber, 10))
+  .reduce(
+    (acc, obj) =>
+      acc +
+      obj.bottle.reduce(
+        (sum, bottleObj) => sum + (bottleObj.bottleCount || 0),
+        0
+      ),
+    0
+  );
+
 
   // Ensure menu is defined and has items array before mapping
   if (
@@ -73,9 +91,8 @@ const OrderList = () => {
             ))}
           </tbody>
         </table>
-        <p className="fw-bold">
-          Total Roti Ordered :
-        </p>
+        <p className="fw-bold">Total Roti Ordered :{totalRotiOrdered}</p>
+        <p className="fw-bold">Total Bottle Ordered :{totalBottleOrdered}</p>
         <PlaceOrder />
       </div>
     </>
