@@ -1,27 +1,38 @@
 import React, { useRef } from "react";
-import { postRotiBottleData } from "../FoodMenuApi";
 import Swal from "sweetalert2";
 import OrdersButton from "../veg_nonVeg_component/OrdersButton";
+import { postRotiBottleDataInBody } from "../FoodMenuApi";
 
-export default function RotiBevaragePage(props) {
-  const rotiCout = useRef();
-  const waterBottle = useRef();
+export default function RotiBeveragePage() {
+  const rotiCountRef = useRef();
+  const waterBottleRef = useRef();
   let tableNo = sessionStorage.getItem("tableNumber");
   console.log("number", tableNo);
 
   async function postRotiAndBottle() {
     try {
-      const rotiCount = rotiCout.current.value;
-      const bottleCount = waterBottle.current.value;
-
-      if (rotiCount >= 1 || bottleCount >= 1) {
-        await postRotiBottleData(parseInt(tableNo), rotiCount, bottleCount);
-        Swal.fire("Data has been successfully sent");
+      let rotiCount = parseInt(rotiCountRef.current.value) || 0;
+      let bottleCount = parseInt(waterBottleRef.current.value) || 0;
+ 
+       if(!tableNo){
+        Swal.fire("plz first select table number in veg or nonveg item selector");
+        return;
+       }
+      if (rotiCount >= 0 && bottleCount >= 0) {
+        const PostOrderData = {
+          tableNo: tableNo,
+          rotiCount: rotiCount || 0,
+          bottleCount: bottleCount || 0,
+        };
+        await postRotiBottleDataInBody(PostOrderData);
+        Swal.fire(
+          `Your Roti ${rotiCount} And ${bottleCount} is set to YOur Order`
+        );  
       } else {
-        Swal.fire("You Can't Enter Negative Value Or Zero");
+        Swal.fire("Plz Don't Enter Negative Value");
       }
     } catch (error) {
-      console.log("something went wrong to send data", error);
+      console.log("Something went wrong to send data", error);
       Swal.fire("Something went wrong while sending data");
     }
   }
@@ -30,13 +41,13 @@ export default function RotiBevaragePage(props) {
     <>
       <OrdersButton />
       <div className="text-start">
-        <div>Your Table No :{tableNo}</div>
+        <div>Your Table No: {tableNo}</div>
       </div>
       <table className="table text-center">
         <thead>
           <tr>
-            <th>roti & Water Bottle</th>
-            <th>Plz Enter Count</th>
+            <th>Roti & Water Bottle</th>
+            <th>Please Enter Count</th>
           </tr>
         </thead>
         <tbody>
@@ -45,7 +56,7 @@ export default function RotiBevaragePage(props) {
             <td>
               <input
                 type="number"
-                ref={rotiCout}
+                ref={rotiCountRef}
                 className="rounded rounded-2 text-center"
               />
             </td>
@@ -55,7 +66,7 @@ export default function RotiBevaragePage(props) {
             <td>
               <input
                 type="number"
-                ref={waterBottle}
+                ref={waterBottleRef}
                 className="rounded rounded-2 text-center"
               />
             </td>

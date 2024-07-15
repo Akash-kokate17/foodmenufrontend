@@ -133,15 +133,24 @@ export async function allOderData() {
   }
 }
 
-// post roti and water bottle
-
-export async function postRotiBottleData(tableNo, roti, waterBottle) {
+// this function is for posting the roti and bottle data in /postRotiBottle rest api in backend ;
+export async function postRotiBottleDataInBody(postData) {
   try {
     let response = await axios.post(
-      `https://foodmenubackend.onrender.com/rotiBevarage/postRotiOrder/${tableNo}/${roti}/${waterBottle}`
+      "https://foodmenubackend.onrender.com/postRotiBottle",
+      postData
     );
     return response.data;
   } catch (error) {
-    console.log(error, "roti and water bottle data is not posted");
+    console.log("something went wrong to send roti and bottle data", error);
   }
-};
+}
+
+// this api /getRotiBottleTableNo is for getting all the data inside "rotibottlecounts" database.
+
+export async function getAllRotiBottleTableNo() {
+  try {
+    let response = await axios.get("https://foodmenubackend.onrender.com/getRotiBottleTableNo");
+    return response.data;
+  } catch (error) {}
+}
