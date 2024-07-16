@@ -152,5 +152,9 @@ export async function getAllRotiBottleTableNo() {
   try {
     let response = await axios.get("https://foodmenubackend.onrender.com/getRotiBottleTableNo");
     return response.data;
-  } catch (error) {}
+  } catch (error) {
+    console.log(
+      "something went wrong to getting roti and bottle count"
+    )
+  }
 }
