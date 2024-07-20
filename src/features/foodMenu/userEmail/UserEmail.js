@@ -6,12 +6,13 @@ import { sendOtpMail } from "../FoodMenuApi";
 export default function UserEmail() {
   const [flag, setFlag] = useState(true);
   const [otp, setOtp] = useState();
+  const [uEmail,setUEmail] = useState();
   const emailRef = useRef();
   const otpRef = useRef();
   const navigate = useNavigate();
 
   const generateOTP = () => {
-    return Math.floor(1000 + Math.random() * 9000).toString();
+    return Math.floor(1000 + Math.random() * 9000);
   };
 
   const storeGmail = async () => {
@@ -20,19 +21,50 @@ export default function UserEmail() {
       Swal.fire("Please enter a valid Gmail address.");
     } else {
       sessionStorage.setItem("email", email);
+      setUEmail(email)
       let otp = generateOTP();
+      console.log(otp);
       setOtp(otp);
-      console.log(otp, "otp");
-      await sendOtpMail(otp, email);
-      email = emailRef.current.value = "";
-      setFlag(false);
+      try {
+        setFlag(false);
+        emailRef.current.value = "";
+        await sendOtpMail(otp, uEmail);
+      } catch (error) {
+        console.log("error to send mail");
+      }
     }
   };
 
   // verifyOtp() for verify otp
 
-  const verifyOtp = () => {
-    
+  const verifyOtp = async () => {
+    console.log("working");
+    let userOtp = otpRef.current.value;
+    if (parseInt(userOtp) === parseInt(otp)) {
+      navigate("/vegNonVegMenu");
+    } else {
+      Swal.fire({
+        title: "Otp is Incorrect",
+        text: "Click Yes , To Generate Otp Again",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, create otp again!",
+      }).then(async(result) => {
+        if (result.isConfirmed) {
+          let genarateOtpAgain = generateOTP();
+          setOtp(genarateOtpAgain);
+          console.log(genarateOtpAgain,"newOtp")
+          Swal.fire({
+            title: "successful",
+            text: "New Otp Send Successfully",
+            icon: "success",
+          });
+          await sendOtpMail(genarateOtpAgain, uEmail);
+        }
+      });
+    }
   };
   return (
     <div className="d-flex flex-column flex-wrap justify-content-center align-items-center w-100 vh-100">
