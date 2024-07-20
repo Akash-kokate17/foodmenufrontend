@@ -74,7 +74,7 @@ const totalBottleOrdered = rotiBottle
   return (
     <>
       <div>
-        <h1>Order List</h1>
+        <h1>Order List Of Table No : {tableNumber}</h1>
         <table className="table">
           <thead>
             <tr>

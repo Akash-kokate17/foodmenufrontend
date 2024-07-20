@@ -24,10 +24,24 @@ export default function RotiBeveragePage() {
           rotiCount: rotiCount || 0,
           bottleCount: bottleCount || 0,
         };
-        await postRotiBottleDataInBody(PostOrderData);
-        Swal.fire(
-          `Your Roti ${rotiCount} And ${bottleCount} is set to YOur Order`
-        );  
+        Swal.fire({
+          title: "Are you sure?",
+          text: `Your Roti ${rotiCount} And ${bottleCount} is set to YOur Order`,
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes"
+        }).then(async(result) => {
+          if (result.isConfirmed) {
+            await postRotiBottleDataInBody(PostOrderData);
+            Swal.fire({
+              title: "Success",
+              text: "Your order is set to Your order ",
+              icon: "success"
+            });
+          }
+        });
       } else {
         Swal.fire("Plz Don't Enter Negative Value");
       }
@@ -73,7 +87,9 @@ export default function RotiBeveragePage() {
           </tr>
         </tbody>
       </table>
-      <button onClick={postRotiAndBottle}>Submit</button>
+      <div className="w-100 d-flex justify-content-end align-items-end pe-4">
+      <button onClick={postRotiAndBottle} className="btn btn-primary">Submit</button>
+      </div>
     </>
   );
 }

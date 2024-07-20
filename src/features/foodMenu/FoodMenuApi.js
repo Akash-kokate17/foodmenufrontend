@@ -150,11 +150,22 @@ export async function postRotiBottleDataInBody(postData) {
 
 export async function getAllRotiBottleTableNo() {
   try {
-    let response = await axios.get("https://foodmenubackend.onrender.com/getRotiBottleTableNo");
+    let response = await axios.get(
+      "https://foodmenubackend.onrender.com/getRotiBottleTableNo"
+    );
     return response.data;
   } catch (error) {
-    console.log(
-      "something went wrong to getting roti and bottle count"
-    )
+    console.log("something went wrong to getting roti and bottle count");
+  }
+}
+
+// this function is for send otp through the mail
+export async function sendOtpMail(otp, mail) {
+  try {
+    await axios.get(
+      `https://foodmenubackend.onrender.com/otpVerificationMail/${otp}/${mail}`
+    );
+  } catch (error) {
+    console.log("something went wrong to send otp mail");
   }
 }
