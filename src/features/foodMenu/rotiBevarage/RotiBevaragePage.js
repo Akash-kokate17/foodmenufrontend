@@ -66,7 +66,7 @@ export default function RotiBeveragePage() {
         </thead>
         <tbody>
           <tr>
-            <td>Select Roti</td>
+            <td>Enter Roti</td>
             <td>
               <input
                 type="number"
@@ -76,7 +76,7 @@ export default function RotiBeveragePage() {
             </td>
           </tr>
           <tr>
-            <td>Select Water Bottle</td>
+            <td>Enter Water Bottle</td>
             <td>
               <input
                 type="number"

@@ -54,6 +54,7 @@ export default function AllRotiBottleCount(props) {
               <td>{total.tableNo}</td>
               <td>{total.totalRoti}</td>
               <td>{total.totalBottle}</td>
+              <td><button className="btn btn-danger">Delete</button></td>
             </tr>
           ))}
         </tbody>

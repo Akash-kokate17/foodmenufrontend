@@ -155,7 +155,8 @@ const VegFoodComponent = () => {
   return (
     <>
     <OrdersButton/>
-      <select onChange={selectTable} value={tableNumber}>
+      <div className="d-flex justify-content-end mt-3 me-3">
+      <select onChange={selectTable} value={tableNumber} className="rounded rounded-4 ms-2 p-1">
         <option value="" disabled>
           {`Select table number ${tableNumber ? `: ${tableNumber}` : ""}`}
         </option>
@@ -165,16 +166,18 @@ const VegFoodComponent = () => {
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
+      </div>
 
       <div className="flex flex-wrap w-100 mt-4 mb-4">
         <div className="flex justify-content-center align-items-center w-100">
           <div className="text-center flex justify-content-center align-items-center w-100">
             <input
               placeholder="Search Your Fav Food"
-              className="text-center rounded rounded-5 w-75"
+              className="text-center w-75"
               onChange={(e) => {
                 searchItemResult(e);
               }}
+              style={{outline:"none",border:"none", borderBottom:"2px solid black"}}
             />
           </div>
         </div>
