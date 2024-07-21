@@ -160,10 +160,10 @@ export async function getAllRotiBottleTableNo() {
 }
 
 // this function is for send otp through the mail
-export async function sendOtpMail(otp, mail) {
+export async function sendOtpMail(otp, gmail) {
   try {
     await axios.get(
-      `https://foodmenubackend.onrender.com/otpVerificationMail/${otp}/${mail}`
+      `https://foodmenubackend.onrender.com/otpVerificationMail/${otp}/${gmail}`
     );
   } catch (error) {
     console.log("something went wrong to send otp mail");

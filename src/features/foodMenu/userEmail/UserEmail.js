@@ -6,7 +6,6 @@ import { sendOtpMail } from "../FoodMenuApi";
 export default function UserEmail() {
   const [flag, setFlag] = useState(true);
   const [otp, setOtp] = useState();
-  const [uEmail,setUEmail] = useState();
   const emailRef = useRef();
   const otpRef = useRef();
   const navigate = useNavigate();
@@ -21,16 +20,17 @@ export default function UserEmail() {
       Swal.fire("Please enter a valid Gmail address.");
     } else {
       sessionStorage.setItem("email", email);
-      setUEmail(email)
       let otp = generateOTP();
       console.log(otp);
       setOtp(otp);
       try {
         setFlag(false);
         emailRef.current.value = "";
-        await sendOtpMail(otp, uEmail);
+        let userGmail = sessionStorage.getItem("email")
+        console.log("userGmail",userGmail)
+        await sendOtpMail(otp,userGmail);
       } catch (error) {
-        console.log("error to send mail");
+        Swal.fire("error to send mail");
       }
     }
   };
@@ -40,6 +40,9 @@ export default function UserEmail() {
   const verifyOtp = async () => {
     console.log("working");
     let userOtp = otpRef.current.value;
+    if(userOtp === ""){
+    return  Swal.fire("Plz Fill the Otp")
+    }
     if (parseInt(userOtp) === parseInt(otp)) {
       navigate("/vegNonVegMenu");
     } else {
@@ -61,7 +64,9 @@ export default function UserEmail() {
             text: "New Otp Send Successfully",
             icon: "success",
           });
-          await sendOtpMail(genarateOtpAgain, uEmail);
+          let userGmail = sessionStorage.getItem("email")
+          console.log("userGmail",userGmail)
+          await sendOtpMail(genarateOtpAgain,userGmail);
         }
       });
     }
