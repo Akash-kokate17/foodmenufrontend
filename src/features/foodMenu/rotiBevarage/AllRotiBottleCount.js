@@ -48,6 +48,7 @@ export default function AllRotiBottleCount(props) {
     try {
       let tableNo = parseInt(tableNumber);
       let response = await deleteRotiAndBottle(tableNo);
+      getAllRotiBottleCount();
       console.log(response, "response");
     } catch (error) {
       console.log("something went wrong to delete");
