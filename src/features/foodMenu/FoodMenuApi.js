@@ -169,3 +169,16 @@ export async function sendOtpMail(otp, gmail) {
     console.log("something went wrong to send otp mail");
   }
 }
+
+// this function is for delete the roti and bottle of specific table number
+
+export async function deleteRotiAndBottle(tableNo) {
+  try {
+    let response = await axios.delete(
+      `https://foodmenubackend.onrender.com/deleteAllRotiBottle/${tableNo}`
+    );
+    return response.data;
+  } catch (error) {
+    console.log("something went wrong to delete roti and bottle table");
+  }
+}
