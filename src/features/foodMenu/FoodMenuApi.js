@@ -36,7 +36,7 @@ export async function orderMenuData(order) {
 export async function removeOrder(tableNo, food) {
   try {
     let response = await axios.delete(
-      `https://foodmenubackend.onrender.com/${tableNo}/${food}`
+      `https://foodmenubackend.onrender.com/removeOrder/${tableNo}/${food}`
     );
     return response.data;
   } catch (err) {

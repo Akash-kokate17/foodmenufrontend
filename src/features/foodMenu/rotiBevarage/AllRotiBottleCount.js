@@ -22,27 +22,25 @@ export default function AllRotiBottleCount(props) {
 
   console.log("roti bottle data", rotiBottleCount);
 
-  // Calculate total counts
-  const calculateTotalCounts = () => {
+  // Format counts
+  const formatCounts = (items, countKey) => {
+    return items.map((item) => item[countKey]).join(" + ");
+  };
+
+  const formatTotalCounts = () => {
     return rotiBottleCount.map((order) => {
-      const totalRoti = order.roti.reduce(
-        (acc, item) => acc + item.rotiCount,
-        0
-      );
-      const totalBottle = order.bottle.reduce(
-        (acc, item) => acc + item.bottleCount,
-        0
-      );
+      const rotiCounts = formatCounts(order.roti, "rotiCount");
+      const bottleCounts = formatCounts(order.bottle, "bottleCount");
       return {
         tableNo: order.tableNo,
-        totalRoti,
-        totalBottle,
+        rotiCounts,
+        bottleCounts,
       };
     });
   };
 
-  const totals = calculateTotalCounts();
-  console.log(totals, "totals");
+  const formattedTotals = formatTotalCounts();
+  console.log(formattedTotals, "formattedTotals");
 
   let deleteTableNoData = async (tableNumber) => {
     try {
@@ -61,17 +59,17 @@ export default function AllRotiBottleCount(props) {
         <thead>
           <tr>
             <th>Table Number</th>
-            <th>Total Roti</th>
-            <th>Total Bottle</th>
+            <th>Roti Orders</th>
+            <th>Bottle Orders</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          {totals.map((total, index) => (
+          {formattedTotals.map((total, index) => (
             <tr key={index}>
               <td>{total.tableNo}</td>
-              <td>{total.totalRoti}</td>
-              <td>{total.totalBottle}</td>
+              <td>{total.rotiCounts}</td>
+              <td>{total.bottleCounts}</td>
               <td>
                 <button
                   className="btn btn-danger"
