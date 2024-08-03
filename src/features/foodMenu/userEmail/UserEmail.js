@@ -89,7 +89,7 @@ export default function UserEmail() {
             </div>
             <div className="text-center">
               <button className="btn btn-primary" onClick={storeGmail}>
-                Enter To Order List
+              Get Otp
               </button>
             </div>
           </div>
