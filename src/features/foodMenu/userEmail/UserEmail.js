@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { sendOtpMail } from "../FoodMenuApi";
 
@@ -26,9 +26,9 @@ export default function UserEmail() {
       try {
         setFlag(false);
         emailRef.current.value = "";
-        let userGmail = sessionStorage.getItem("email")
-        console.log("userGmail",userGmail)
-        await sendOtpMail(otp,userGmail);
+        let userGmail = sessionStorage.getItem("email");
+        console.log("userGmail", userGmail);
+        await sendOtpMail(otp, userGmail);
       } catch (error) {
         Swal.fire("error to send mail");
       }
@@ -40,8 +40,8 @@ export default function UserEmail() {
   const verifyOtp = async () => {
     console.log("working");
     let userOtp = otpRef.current.value;
-    if(userOtp === ""){
-    return  Swal.fire("Plz Fill the Otp")
+    if (userOtp === "") {
+      return Swal.fire("Plz Fill the Otp");
     }
     if (parseInt(userOtp) === parseInt(otp)) {
       navigate("/vegNonVegMenu");
@@ -54,19 +54,19 @@ export default function UserEmail() {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, create otp again!",
-      }).then(async(result) => {
+      }).then(async (result) => {
         if (result.isConfirmed) {
           let genarateOtpAgain = generateOTP();
           setOtp(genarateOtpAgain);
-          console.log(genarateOtpAgain,"newOtp")
+          console.log(genarateOtpAgain, "newOtp");
           Swal.fire({
             title: "successful",
             text: "New Otp Send Successfully",
             icon: "success",
           });
-          let userGmail = sessionStorage.getItem("email")
-          console.log("userGmail",userGmail)
-          await sendOtpMail(genarateOtpAgain,userGmail);
+          let userGmail = sessionStorage.getItem("email");
+          console.log("userGmail", userGmail);
+          await sendOtpMail(genarateOtpAgain, userGmail);
         }
       });
     }
@@ -74,11 +74,9 @@ export default function UserEmail() {
   return (
     <div className="d-flex flex-column flex-wrap justify-content-center align-items-center w-100 vh-100">
       {flag ? (
-        <div className="border border-2 col-sm-3 col-md-4 h-50 d-flex align-items-center rounded rounded-3">
+        <div className="border border-2 col-sm-6 col-md-6 col-lg-4 h-50 d-flex align-items-center rounded rounded-3">
           <div className="w-100">
-            <h2 className="text-center">
-              You Get Your Order List On Your Gmail So Please Add Gmail.
-            </h2>
+            <h2 className="text-center">Enter Your Email Id</h2>
             <div className="d-flex align-items-center justify-content-center">
               <input
                 ref={emailRef}
@@ -87,10 +85,13 @@ export default function UserEmail() {
                 placeholder="Enter Your Email"
               />
             </div>
-            <div className="text-center">
+            <div className="text-center d-flex flex-wrap justify-content-evenly">
               <button className="btn btn-primary" onClick={storeGmail}>
-              Get Otp
+                Get Otp
               </button>
+              <Link to="/vegNonVegMenu">
+                <button className="btn btn-success">Guest Login</button>
+              </Link>
             </div>
           </div>
         </div>
