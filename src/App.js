@@ -9,6 +9,7 @@ import OwnerPasswordCheck from "./features/foodMenu/ownerLogin/OwnerPasswordChec
 import AllPlaceOrder from "./features/foodMenu/allPlaceOrder/AllPlaceOrder";
 import UserEmail from "./features/foodMenu/userEmail/UserEmail";
 import RotiBevaragePage from "./features/foodMenu/rotiBevarage/RotiBevaragePage";
+import { PageNotFound } from "./features/foodMenu/pagenotfound/PageNotFound";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/ownerLogin" element={<OwnerPasswordCheck />} />
         <Route exact path="/allOrder" element={<AllPlaceOrder/>}/>
         <Route exact path="/rotiBevarage" element={<RotiBevaragePage/>}/>
+        <Route path="*" element={<PageNotFound/>}/>
       </Routes>
     </>
   );
